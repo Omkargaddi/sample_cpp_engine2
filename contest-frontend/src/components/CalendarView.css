@@ -1,0 +1,152 @@
+.calendar-container {
+  margin-top: 2rem;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+
+.calendar-header button {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5f5;
+  background: #eef2ff;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.calendar-header button:hover {
+  background: #e0e7ff;
+}
+.calendar-cell.today {
+  border: 2px solid #2563eb;
+  background: #f0f7ff;
+}
+
+.no-events {
+  font-size: 0.7rem;
+  color: #9ca3af;
+  margin-top: 6px;
+}
+
+
+.calendar-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+}
+
+.calendar-cell {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 10px;
+  min-height: 160px;
+  border: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-date {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+.calendar-date span {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.calendar-date strong {
+  font-size: 1.1rem;
+}
+
+.calendar-events {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Event cards */
+.event-card {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  text-decoration: none;
+  color: #111827;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.event-title {
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.event-time {
+  font-size: 0.65rem;
+  opacity: 0.7;
+}
+
+/* Platform colors */
+.event-card.codeforces {
+  background: #e0f2fe;
+  border-left: 4px solid #0284c7;
+}
+
+.event-card.codechef {
+  background: #fef3c7;
+  border-left: 4px solid #d97706;
+}
+
+.event-card.atcoder {
+  background: #ecfeff;
+  border-left: 4px solid #0891b2;
+}
+
+.event-card.leetcode {
+  background: #f1f5f9;
+  border-left: 4px solid #475569;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .calendar-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .calendar-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.calendar-cell.today {
+  border: 2px solid #2563eb;
+  background: #f0f7ff;
+}
+
+.no-events {
+  font-size: 0.7rem;
+  color: #9ca3af;
+  margin-top: 6px;
+}
