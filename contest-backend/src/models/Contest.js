@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const contestSchema = new mongoose.Schema(
+const contest2Schema = new mongoose.Schema(
   {
     platform: {
       type: String,
@@ -31,7 +31,7 @@ const contestSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-contestSchema.index({ platform: 1, platformId: 1 }, { unique: true });
-contestSchema.index({ startTime: 1 });
+contest2Schema.index({ platform: 1, platformId: 1 }, { unique: true });
+contest2Schema.index({ startTime: 1 });
 
-module.exports = mongoose.model("Contest", contestSchema);
+module.exports = mongoose.model("Contest", contest2Schema);
