@@ -36,7 +36,6 @@ cron.schedule("*/30 * * * *", async () => {
     console.error("LeetCode failed:", e.message);
   }
 });
-fetchAtCoderContests();
 /**
  * Cleanup job – runs daily at 03:00 AM
  */
