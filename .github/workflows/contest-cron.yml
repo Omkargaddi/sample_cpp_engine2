@@ -1,0 +1,30 @@
+name: Contest Cron Jobs
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # every 30 minutes
+    - cron: "0 3 * * *"      # cleanup daily at 03:00 UTC
+  workflow_dispatch:         # manual run button
+
+jobs:
+  run-cron:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: contest-backend
+
+      - name: Run cron jobs
+        run: node src/cron-runner.js
+        working-directory: contest-backend
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
