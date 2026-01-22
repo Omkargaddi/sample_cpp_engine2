@@ -5,7 +5,6 @@ const fetchCodeforces = require("./services/codeforces.service");
 const { fetchAtCoderContests } = require("./services/atcoder.service");
 const fetchCodeChef = require("./services/codechef.service");
 const fetchLeetCode = require("./services/leetcode.service");
-const cleanupPastContests = require("./jobs/cleanupPastContests.job");
 
 (async () => {
   await connectDB();
@@ -23,12 +22,6 @@ const cleanupPastContests = require("./jobs/cleanupPastContests.job");
       fetchLeetCode()
     ]);
     console.log("Fetch completed");
-  }
-
-  // Daily cleanup at 03:00 UTC
-  if (hour === 3 && minute === 0) {
-    await cleanupPastContests();
-    console.log("Cleanup completed");
   }
 
   process.exit(0);

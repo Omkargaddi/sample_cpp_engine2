@@ -6,7 +6,6 @@ const fetchCodeforces = require("../services/codeforces.service");
 const { fetchAtCoderContests } = require("../services/atcoder.service");
 const fetchCodeChef = require("../services/codechef.service");
 const fetchLeetCode = require("../services/leetcode.service");
-const cleanupPastContests = require("./cleanupPastContests.job");
 
 // Fetch contests every 30 minutes
 cron.schedule("*/30 * * * *", async () => {
@@ -34,15 +33,5 @@ cron.schedule("*/30 * * * *", async () => {
     await fetchLeetCode();
   } catch (e) {
     console.error("LeetCode failed:", e.message);
-  }
-});
-/**
- * Cleanup job – runs daily at 03:00 AM
- */
-cron.schedule("0 3 * * *", async () => {
-  try {
-    await cleanupPastContests();
-  } catch (e) {
-    console.error("Cleanup failed:", e.message);
   }
 });
