@@ -7,14 +7,12 @@ const fetchCodeChef = require("./services/codechef.service");
 const fetchLeetCode = require("./services/leetcode.service");
 
 (async () => {
-  await connectDB();
-  console.log("GitHub Action connected to DB");
+  try {
+    await connectDB();
+    console.log("GitHub Action connected to DB");
 
-  const hour = new Date().getUTCHours();
-  const minute = new Date().getUTCMinutes();
-
-  // Every 30 minutes → fetch
-  if (minute === 0 || minute === 30) {
+    console.log("Starting fetch...");
+    // Always fetch, regardless of the exact minute
     await Promise.allSettled([
       fetchCodeforces(),
       fetchAtCoderContests(),
@@ -22,6 +20,10 @@ const fetchLeetCode = require("./services/leetcode.service");
       fetchLeetCode()
     ]);
     console.log("Fetch completed");
+
+  } catch (error) {
+    console.error("Cron Runner Error:", error);
+    process.exit(1); // Exit with error so GitHub Actions marks it as failed
   }
 
   process.exit(0);
