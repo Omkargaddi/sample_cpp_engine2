@@ -11,11 +11,9 @@ export default function App() {
             Upcoming competitive programming contests
           </p>
         </header>
-
         <div className="app-card">
           <CalendarView />
         </div>
-
         <footer className="app-footer">
           © {new Date().getFullYear()} Contest Manager
         </footer>

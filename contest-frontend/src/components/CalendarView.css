@@ -1,152 +1,280 @@
-.calendar-container {
-  margin-top: 2rem;
-}
-
+/* --- Header Controls --- */
 .calendar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
-}
-
-
-.calendar-header button {
-  padding: 6px 12px;
-  border-radius: 8px;
-  border: 1px solid #cbd5f5;
-  background: #eef2ff;
-  cursor: pointer;
-  font-size: 0.8rem;
-}
-
-.calendar-header button:hover {
-  background: #e0e7ff;
-}
-.calendar-cell.today {
-  border: 2px solid #2563eb;
-  background: #f0f7ff;
-}
-
-.no-events {
-  font-size: 0.7rem;
-  color: #9ca3af;
-  margin-top: 6px;
-}
-
-
-.calendar-title {
-  font-size: 1.4rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 24px;
+  background: white;
+  padding: 16px 24px;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  flex-wrap: wrap; /* Allows wrapping on small screens */
   gap: 12px;
 }
 
+.calendar-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+  text-align: center;
+}
+
+.nav-btn {
+  background: #f3f4f6;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #4b5563;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap; /* Prevents text breaking */
+}
+
+.nav-btn:hover {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+/* --- GRID LAYOUT --- */
+.calendar-grid {
+  display: grid;
+  /* Default: 7 Columns for Desktop */
+  grid-template-columns: repeat(7, 1fr);
+  gap: 16px;
+}
+
+/* --- CELL STYLING --- */
 .calendar-cell {
   background: #ffffff;
-  border-radius: 12px;
-  padding: 10px;
-  min-height: 160px;
-  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 16px;
+  min-height: 280px; 
   display: flex;
   flex-direction: column;
+  position: relative;
+  border: 1px solid transparent;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
 }
 
-.calendar-date {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 6px;
-  color: #374151;
-}
-
-.calendar-date span {
-  font-size: 0.8rem;
-  color: #6b7280;
-}
-
-.calendar-date strong {
-  font-size: 1.1rem;
-}
-
-.calendar-events {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-/* Event cards */
-.event-card {
-  display: flex;
-  flex-direction: column;
-  padding: 6px 8px;
-  border-radius: 8px;
-  font-size: 0.75rem;
-  text-decoration: none;
-  color: #111827;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.event-card:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-}
-
-.event-title {
-  font-weight: 500;
-  line-height: 1.2;
-}
-
-.event-time {
-  font-size: 0.65rem;
-  opacity: 0.7;
-}
-
-/* Platform colors */
-.event-card.codeforces {
-  background: #e0f2fe;
-  border-left: 4px solid #0284c7;
-}
-
-.event-card.codechef {
-  background: #fef3c7;
-  border-left: 4px solid #d97706;
-}
-
-.event-card.atcoder {
-  background: #ecfeff;
-  border-left: 4px solid #0891b2;
-}
-
-.event-card.leetcode {
-  background: #f1f5f9;
-  border-left: 4px solid #475569;
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .calendar-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 500px) {
-  .calendar-grid {
-    grid-template-columns: 1fr;
-  }
+.calendar-cell:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 .calendar-cell.today {
-  border: 2px solid #2563eb;
-  background: #f0f7ff;
+  border: 2px solid #3b82f6;
+  background: #eff6ff;
 }
 
-.no-events {
-  font-size: 0.7rem;
+/* Date Header inside Cell */
+.cell-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.day-name {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
   color: #9ca3af;
-  margin-top: 6px;
+  letter-spacing: 0.5px;
+}
+
+.day-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.calendar-cell.today .day-number {
+  color: #2563eb;
+}
+
+/* --- CONTEST SECTION --- */
+.section-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #d1d5db;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.contest-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.contest-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  border-left: 4px solid #ccc;
+  background: #f9fafb;
+  transition: filter 0.2s;
+}
+
+.contest-card:hover {
+  filter: brightness(0.95);
+}
+
+/* Platform Colors */
+.contest-card.codeforces { border-color: #22c55e; background: #f0fdf4; }
+.contest-card.codeforces .contest-name { color: #166534; }
+
+.contest-card.leetcode { border-color: #f59e0b; background: #fffbeb; }
+.contest-card.leetcode .contest-name { color: #92400e; }
+
+.contest-card.codechef { border-color: #8b5cf6; background: #f5f3ff; }
+.contest-card.codechef .contest-name { color: #5b21b6; }
+
+.contest-card.atcoder { border-color: #1f2937; background: #f3f4f6; }
+.contest-card.atcoder .contest-name { color: #111827; }
+
+.time-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  opacity: 0.8;
+  white-space: nowrap;
+}
+.contest-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --- QUESTIONS SECTION --- */
+.questions-section {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px dashed #e5e7eb;
+}
+
+.q-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+  padding: 4px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.q-item:hover {
+  background: rgba(0,0,0,0.02);
+}
+
+.q-checkbox {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #d1d5db;
+  border-radius: 4px;
+  margin-top: 2px;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  flex-shrink: 0;
+}
+
+.q-checkbox::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  transform: scale(0);
+  background-color: white;
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transition: 120ms transform ease-in-out;
+}
+
+.q-checkbox:checked {
+  background-color: #10b981;
+  border-color: #10b981;
+}
+
+.q-checkbox:checked::before {
+  transform: scale(1);
+}
+
+.q-link {
+  font-size: 0.8rem;
+  color: #374151;
+  text-decoration: none;
+  line-height: 1.3;
+  word-break: break-word;
+  transition: color 0.2s;
+}
+
+.q-link:hover {
+  color: #2563eb;
+}
+
+.q-item.completed .q-link {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.free-day {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-top: 20px;
+  font-style: italic;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+/* =========================================
+   RESPONSIVE BREAKPOINTS
+   ========================================= */
+
+/* Tablet / Small Laptop (max 1200px) */
+/* Switch to wrapping grid instead of forced 7 cols */
+@media (max-width: 1200px) {
+  .calendar-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+
+/* Mobile (max 600px) */
+/* Stack everything vertically */
+@media (max-width: 600px) {
+  .calendar-header {
+    flex-direction: column; /* Stack header items */
+    gap: 1rem;
+  }
+  
+  .calendar-title {
+    order: -1; /* Keep title at top */
+    font-size: 1.2rem;
+  }
+
+  .nav-btn {
+    width: 100%; /* Full width buttons for easy tapping */
+    padding: 12px;
+  }
+
+  .calendar-grid {
+    grid-template-columns: 1fr; /* Single column */
+  }
+
+  .calendar-cell {
+    min-height: auto; /* Allow dynamic height */
+  }
 }
